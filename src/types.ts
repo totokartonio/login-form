@@ -6,6 +6,7 @@ type FormData = {
 type FormErrors = {
   email?: string;
   password?: string;
+  submit?: string;
 };
 
 export type { FormData, FormErrors };
