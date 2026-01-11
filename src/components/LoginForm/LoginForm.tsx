@@ -1,20 +1,30 @@
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
-import type { FormData } from "../../type";
+import type { FormErrors, FormData } from "../../types";
 import Input from "../Input";
+import { validateForm } from "../../utils/validate";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const newErrors = validateForm(formData);
+    setErrors(newErrors);
+
+    const hasErrors = Object.values(newErrors).some((value) => !!value);
+    if (hasErrors) return;
+
     console.log("Submitted: ", formData);
   };
 
@@ -27,9 +37,10 @@ const LoginForm = () => {
         name="email"
         placeholder="example@yourmail.com"
         autoComplete="username"
-        required
+        aria-required
         value={formData.email}
         onChange={handleChange}
+        error={errors.email}
       />
       <Input
         label="Password"
@@ -37,9 +48,10 @@ const LoginForm = () => {
         type="password"
         name="password"
         autoComplete="current-password"
-        required
+        aria-required
         value={formData.password}
         onChange={handleChange}
+        error={errors.password}
       />
       <button type="submit">Login</button>
     </form>

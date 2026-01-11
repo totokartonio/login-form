@@ -3,39 +3,25 @@ import styles from "./Input.module.css";
 type Props = {
   label: string;
   id: string;
-  type: "email" | "password" | "text";
-  name: string;
-  placeholder?: string;
-  autoComplete?: string;
-  required?: boolean;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  error?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-const Input = ({
-  label,
-  id,
-  type,
-  name,
-  placeholder,
-  autoComplete,
-  required,
-  value,
-  onChange,
-}: Props) => {
+const Input = ({ label, id, error, ...inputProps }: Props) => {
+  const errorId = error ? `${id}-error` : undefined;
   return (
     <div className={styles.container}>
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        required={required}
-        value={value}
-        onChange={onChange}
+        aria-invalid={!!error}
+        aria-describedby={errorId}
+        {...inputProps}
       />
+      {error && (
+        <div id={errorId} role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
 };
