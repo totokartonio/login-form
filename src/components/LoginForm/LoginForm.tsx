@@ -1,17 +1,22 @@
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
-import type { FormErrors, FormData } from "../../types";
+import type { FormErrors, FormData, User } from "../../types";
 import Input from "../Input";
 import { validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
 
-const LoginForm = () => {
+type Props = {
+  onSuccess: (user: User) => void;
+};
+
+const LoginForm = ({ onSuccess }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -31,9 +36,8 @@ const LoginForm = () => {
 
     try {
       const response = await mockAuth(formData.email, formData.password);
-      console.log("Login successful!", response);
+      onSuccess({ ...response.user, token: response.token });
     } catch (error) {
-      console.log(error);
       setErrors((prev) => ({
         ...prev,
         submit: error instanceof Error ? error.message : "Login failed",
@@ -60,7 +64,7 @@ const LoginForm = () => {
       <Input
         label="Password"
         id="password"
-        type="password"
+        type={!showPassword ? "password" : "text"}
         name="password"
         autoComplete="current-password"
         aria-required
@@ -68,6 +72,14 @@ const LoginForm = () => {
         onChange={handleChange}
         error={errors.password}
       />
+      <button
+        type="button"
+        onClick={() => setShowPassword(!showPassword)}
+        aria-label={showPassword ? "Hide password" : "Show password"}
+        aria-pressed={showPassword}
+      >
+        {!showPassword ? "Show" : "Hide"}
+      </button>
       <button type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "Login"}
       </button>

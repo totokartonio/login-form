@@ -9,4 +9,10 @@ type FormErrors = {
   submit?: string;
 };
 
-export type { FormData, FormErrors };
+type User = {
+  email: string;
+  id: string;
+  token: string;
+};
+
+export type { FormData, FormErrors, User };
