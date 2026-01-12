@@ -2,7 +2,7 @@ import styles from "./LoginForm.module.css";
 import { useState } from "react";
 import type { FormErrors, FormData, User } from "../../types";
 import Input from "../Input";
-import { validateForm } from "../../utils/validate";
+import { validateField, validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
 
 type Props = {
@@ -20,7 +20,14 @@ const LoginForm = ({ onSuccess }: Props) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    const newError = validateField(name as keyof FormData, value);
+    setErrors((prev) => ({ ...prev, [name]: newError }));
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -59,6 +66,7 @@ const LoginForm = ({ onSuccess }: Props) => {
         aria-required
         value={formData.email}
         onChange={handleChange}
+        onBlur={handleBlur}
         error={errors.email}
       />
       <Input
@@ -70,6 +78,7 @@ const LoginForm = ({ onSuccess }: Props) => {
         aria-required
         value={formData.password}
         onChange={handleChange}
+        onBlur={handleBlur}
         error={errors.password}
       />
       <button
