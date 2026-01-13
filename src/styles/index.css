@@ -1,5 +1,7 @@
 :root {
   --color-background: oklch(78.626% 0.09827 40.313);
+  --color-black: oklch(22% 0.02 270);
+  --color-black-hover: oklch(30% 0.02 270);
   --color-white: oklch(0.98 0.008252 271.3302);
   --color-gray: oklch(86.723% 0.01242 291.104);
   --color-light-gray: oklch(95.414% 0.00944 286.056);
@@ -11,6 +13,8 @@
   --color-dark-blue: oklch(59.885% 0.1505 252.118);
   --color-red: #b3261e;
   --color-light-red: #ffe7f7;
+  --color-success: oklch(55% 0.11 190);
+  --color-success-bg: oklch(95% 0.035 190);
 
   --outter-padding: 140px;
   --content-inline-padding: 100px;
@@ -34,6 +38,7 @@ body {
 
 body {
   font-family: Martian Grotesk, sans-serif;
+  color: var(--color-black);
 }
 
 button:focus-visible,
@@ -80,7 +85,7 @@ h1 {
   :root {
     --outter-padding: 20px;
     --content-inline-padding: 20px;
-    --content-block-padding: 20px;
+    --content-block-padding: 35px;
   }
 }
 
