@@ -12,6 +12,7 @@
   --color-red: #b3261e;
   --color-light-red: #ffe7f7;
 
+  --outter-padding: 140px;
   --content-inline-padding: 100px;
   --content-block-padding: 50px;
 }
@@ -61,7 +62,7 @@ button {
   width: 100%;
   max-width: 1440px;
   min-height: 100vh;
-  padding: 140px;
+  padding-inline: var(--outter-padding);
   margin-inline: auto;
 }
 
@@ -71,4 +72,24 @@ h1 {
   letter-spacing: 0;
   font-weight: 900;
   font-stretch: 125%;
+}
+
+@media (width <= 1000px) {
+  :root {
+    --outter-padding: 20px;
+    --content-inline-padding: 20px;
+    --content-block-padding: 20px;
+  }
+}
+
+@media (width <= 600px) {
+  :root {
+    --outter-padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+    font-weight: 800;
+  }
 }
