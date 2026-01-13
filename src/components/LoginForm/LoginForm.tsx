@@ -95,7 +95,11 @@ const LoginForm = ({ onSuccess, className }: Props) => {
         }
       />
 
-      <button type="submit" disabled={isLoading}>
+      <button
+        type="submit"
+        disabled={isLoading}
+        className={styles.submitButton}
+      >
         {isLoading ? "Loading..." : "Login"}
       </button>
     </form>

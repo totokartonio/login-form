@@ -38,3 +38,26 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (width <= 600px) {
+  .card {
+    flex-direction: column;
+    justify-content: start;
+    gap: 30px;
+  }
+
+  .title {
+    border-inline-end: none;
+    border-block-end: 1px solid var(--color-dark-gray);
+    padding-block-end: 30px;
+    flex: 0 0 auto;
+  }
+
+  .content {
+    flex: 0 0 auto;
+  }
+
+  .logOutButton {
+    width: 100%;
+  }
+}

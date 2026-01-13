@@ -20,7 +20,11 @@ const ProfilePage = ({ user, onLogout }: Props) => {
         </span>
       </h1>
       <div className={styles.content}>
-        <button type="button" onClick={onLogout}>
+        <button
+          type="button"
+          onClick={onLogout}
+          className={styles.logOutButton}
+        >
           Logout
         </button>
       </div>
