@@ -1,0 +1,29 @@
+.submitButton {
+  min-width: 100px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  stroke: var(--color-dark-gray);
+  fill: none;
+  stroke-width: 6px;
+  stroke-dasharray: 90 160;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  animation: spinnerSpin 0.8s linear infinite;
+}
+
+@keyframes spinnerSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (width <= 600px) {
+  .submitButton {
+    width: 100%;
+  }
+}

@@ -5,6 +5,7 @@ import Input from "../Input";
 import { validateField, validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
 import ShowPasswordButton from "./atoms/ShowPasswordButton";
+import SubmitButton from "./atoms/SubmitButton";
 
 type Props = {
   onSuccess: (user: User) => void;
@@ -75,6 +76,7 @@ const LoginForm = ({ onSuccess, className }: Props) => {
         onChange={handleChange}
         onBlur={handleBlur}
         error={errors.email}
+        disabled={isLoading}
       />
       <Input
         label="Password"
@@ -87,6 +89,7 @@ const LoginForm = ({ onSuccess, className }: Props) => {
         onChange={handleChange}
         onBlur={handleBlur}
         error={errors.password}
+        disabled={isLoading}
         rightSlot={
           <ShowPasswordButton
             onClick={() => setShowPassword(!showPassword)}
@@ -95,13 +98,7 @@ const LoginForm = ({ onSuccess, className }: Props) => {
         }
       />
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className={styles.submitButton}
-      >
-        {isLoading ? "Loading..." : "Login"}
-      </button>
+      <SubmitButton isLoading={isLoading} />
     </form>
   );
 };
