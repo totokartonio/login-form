@@ -1,0 +1,74 @@
+:root {
+  --color-background: oklch(78.626% 0.09827 40.313);
+  --color-white: oklch(0.98 0.008252 271.3302);
+  --color-gray: oklch(86.723% 0.01242 291.104);
+  --color-light-gray: oklch(95.414% 0.00944 286.056);
+  --color-dark-gray: oklch(70.263% 0.01908 296.377);
+  --color-hover-gray: oklch(62.202% 0.01656 294.169);
+  --color-blue: oklch(86.144% 0.05707 241.267);
+  --color-hover-blue: oklch(81.766% 0.06117 241.827);
+  --color-light-blue: oklch(94.973% 0.02626 242.86);
+  --color-dark-blue: oklch(59.885% 0.1505 252.118);
+  --color-red: #b3261e;
+  --color-light-red: #ffe7f7;
+
+  --content-inline-padding: 100px;
+  --content-block-padding: 50px;
+}
+
+@font-face {
+  font-family: Martian Grotesk;
+  font-display: swap;
+  src: url("../assets/fonts/MartianGrotesk-VFVF.woff2") format("woff2");
+  font-weight: 100 1000; /* Th: 100, xLt: 200, Lt: 300, Rg: 400, Md: 500, (no 600), Bd: 700, xBd: 800, Bl: 900, Ult: 1000 */
+  font-stretch: 75% 200%; /* Cn: 75%,  Nr: 87.5%,  Std: 100%,  sWd: 112.5%,  Wd: 125%,  xWd: 150%,  uWd: 200% */
+}
+
+html,
+body {
+  background-color: var(--color-background);
+}
+
+body {
+  font-family: Martian Grotesk, sans-serif;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-dark-blue);
+  border-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  padding: 16px 25px;
+  width: fit-content;
+  background-color: var(--color-blue);
+  font-weight: 600;
+
+  &:hover {
+    background-color: var(--color-hover-blue);
+  }
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  padding: 140px;
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 3rem;
+  letter-spacing: 0;
+  font-weight: 900;
+  font-stretch: 125%;
+}

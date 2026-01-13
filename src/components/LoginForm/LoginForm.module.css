@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 100%;
-  max-width: 560px;
+}
+
+.formError {
+  border: 2px solid var(--color-red);
+  border-radius: 15px;
+  padding: 10px;
+  color: var(--color-red);
+  background-color: var(--color-light-red);
 }

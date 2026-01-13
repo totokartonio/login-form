@@ -1,4 +1,5 @@
 import type { User } from "../../types";
+import styles from "./ProfilePage.module.css";
 
 type Props = {
   user: User;
@@ -7,10 +8,23 @@ type Props = {
 
 const ProfilePage = ({ user, onLogout }: Props) => {
   return (
-    <>
-      <h1>Welcome, {user.email}</h1>
-      <button onClick={onLogout}>Logout</button>
-    </>
+    <div className={styles.card}>
+      <h1 className={styles.title}>
+        <span className={styles.greeting}>Welcome, </span>
+        <span
+          className={styles.email}
+          title={user.email}
+          aria-label={`Signed in as ${user.email}`}
+        >
+          {user.email}
+        </span>
+      </h1>
+      <div className={styles.content}>
+        <button type="button" onClick={onLogout}>
+          Logout
+        </button>
+      </div>
+    </div>
   );
 };
 
