@@ -1,4 +1,5 @@
 import LoginForm from "../../components/LoginForm";
+import styles from "./LoginPage.module.css";
 import type { User } from "../../types";
 
 type Props = {
@@ -7,10 +8,10 @@ type Props = {
 
 const LoginPage = ({ onSuccess }: Props) => {
   return (
-    <>
-      <h1>Login</h1>
-      <LoginForm onSuccess={onSuccess} />
-    </>
+    <div className={styles.card}>
+      <h1 className={styles.title}>Login</h1>
+      <LoginForm onSuccess={onSuccess} className={styles.content} />
+    </div>
   );
 };
 

@@ -3,3 +3,57 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.label {
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.inputField {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--color-light-gray);
+  border: 2px solid var(--color-gray);
+  border-radius: 15px;
+  font-size: 1.2rem;
+
+  &:focus {
+    background-color: var(--color-light-blue);
+  }
+
+  &[type="password"] {
+    font-family: Verdana;
+  }
+
+  &::placeholder {
+    color: var(--color-dark-gray);
+  }
+}
+
+.invalidInput {
+  border-color: var(--color-red);
+}
+
+.hasRightSlot {
+  padding-inline-end: 50px;
+}
+
+.rightSlot {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.errorMessage {
+  font-size: 0.75rem;
+  color: var(--color-red);
+  line-height: 1;
+}

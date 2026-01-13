@@ -18,13 +18,13 @@ function App() {
   };
 
   return (
-    <>
+    <div className="layout">
       {isLoggedIn && user ? (
         <ProfilePage user={user} onLogout={handleLogout} />
       ) : (
         <LoginPage onSuccess={handleLoginSuccess} />
       )}
-    </>
+    </div>
   );
 }
 

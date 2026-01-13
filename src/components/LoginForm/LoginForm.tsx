@@ -4,12 +4,14 @@ import type { FormErrors, FormData, User } from "../../types";
 import Input from "../Input";
 import { validateField, validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
+import ShowPasswordButton from "./atoms/ShowPasswordButton";
 
 type Props = {
   onSuccess: (user: User) => void;
+  className: string;
 };
 
-const LoginForm = ({ onSuccess }: Props) => {
+const LoginForm = ({ onSuccess, className }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -55,7 +57,12 @@ const LoginForm = ({ onSuccess }: Props) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={`${className} ${styles.form}`} onSubmit={handleSubmit}>
+      {errors.submit && (
+        <div role="alert" className={styles.formError}>
+          {errors.submit}
+        </div>
+      )}
       <Input
         label="Email"
         id="email"
@@ -80,19 +87,17 @@ const LoginForm = ({ onSuccess }: Props) => {
         onChange={handleChange}
         onBlur={handleBlur}
         error={errors.password}
+        rightSlot={
+          <ShowPasswordButton
+            onClick={() => setShowPassword(!showPassword)}
+            showPassword={showPassword}
+          />
+        }
       />
-      <button
-        type="button"
-        onClick={() => setShowPassword(!showPassword)}
-        aria-label={showPassword ? "Hide password" : "Show password"}
-        aria-pressed={showPassword}
-      >
-        {!showPassword ? "Show" : "Hide"}
-      </button>
+
       <button type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "Login"}
       </button>
-      {errors.submit && <div role="alert">{errors.submit}</div>}
     </form>
   );
 };
