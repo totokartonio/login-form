@@ -11,7 +11,3 @@
   color: var(--color-red);
   background-color: var(--color-light-red);
 }
-
-.submitButton {
-  width: 100%;
-}

@@ -8,6 +8,7 @@
   padding-inline: var(--content-inline-padding);
   padding-block: var(--content-block-padding);
   border-radius: 15px;
+  box-shadow: var(--card-shadow);
 }
 
 .title {
