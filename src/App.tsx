@@ -2,30 +2,39 @@ import { useState } from "react";
 import type { User } from "./types";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [selectedPage, setSelectedPage] = useState<
+    "LoginPage" | "ProfilePage" | "ResetPasswordPage"
+  >("LoginPage");
   const [user, setUser] = useState<User | null>(null);
 
   const handleLoginSuccess = (userData: User) => {
     setUser(userData);
-    setIsLoggedIn(true);
+    setSelectedPage("ProfilePage");
   };
 
   const handleLogout = () => {
     setUser(null);
-    setIsLoggedIn(false);
+    setSelectedPage("LoginPage");
   };
 
-  return (
-    <div className="layout">
-      {isLoggedIn && user ? (
-        <ProfilePage user={user} onLogout={handleLogout} />
-      ) : (
-        <LoginPage onSuccess={handleLoginSuccess} />
-      )}
-    </div>
-  );
+  const goToResetPassword = () => setSelectedPage("ResetPasswordPage");
+  const backToLogin = () => setSelectedPage("LoginPage");
+
+  const renderPage = () => {
+    if (selectedPage === "ProfilePage" && user)
+      return <ProfilePage user={user} onLogout={handleLogout} />;
+    if (selectedPage === "ResetPasswordPage")
+      return <ResetPasswordPage onBack={backToLogin} />;
+
+    return (
+      <LoginPage onSuccess={handleLoginSuccess} onReset={goToResetPassword} />
+    );
+  };
+
+  return <div className="layout">{renderPage()}</div>;
 }
 
 export default App;

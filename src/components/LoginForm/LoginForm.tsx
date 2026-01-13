@@ -5,14 +5,13 @@ import Input from "../Input";
 import { validateField, validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
 import ShowPasswordButton from "./atoms/ShowPasswordButton";
-import SubmitButton from "./atoms/SubmitButton";
+import SubmitButton from "../SubmitButton";
 
 type Props = {
   onSuccess: (user: User) => void;
-  className: string;
 };
 
-const LoginForm = ({ onSuccess, className }: Props) => {
+const LoginForm = ({ onSuccess }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -58,7 +57,7 @@ const LoginForm = ({ onSuccess, className }: Props) => {
   };
 
   return (
-    <form className={`${className} ${styles.form}`} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       {errors.submit && (
         <div role="alert" className={styles.formError}>
           {errors.submit}
@@ -98,7 +97,7 @@ const LoginForm = ({ onSuccess, className }: Props) => {
         }
       />
 
-      <SubmitButton isLoading={isLoading} />
+      <SubmitButton isLoading={isLoading} text={"Login"} />
     </form>
   );
 };
