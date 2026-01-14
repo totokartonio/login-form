@@ -18,7 +18,7 @@ const Input = ({ label, id, error, rightSlot, ...inputProps }: Props) => {
         <input
           id={id}
           aria-invalid={!!error}
-          aria-describedby={errorId}
+          aria-describedby={error ? errorId : ""}
           className={`${styles.input} ${error ? styles.invalidInput : ""} ${
             rightSlot ? styles.hasRightSlot : ""
           }`}

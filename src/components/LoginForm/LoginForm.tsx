@@ -24,7 +24,6 @@ const LoginForm = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setErrors((prev) => ({ ...prev, [name]: undefined }));
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -36,6 +35,8 @@ const LoginForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isLoading) return;
 
     const newErrors = validateForm(formData);
     setErrors(newErrors);
@@ -61,7 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       {errors.submit && (
         <div role="alert" className={styles.formError}>
           {errors.submit}
@@ -74,7 +75,7 @@ const LoginForm = () => {
         name="email"
         placeholder="example@yourmail.com"
         autoComplete="username"
-        aria-required
+        required
         value={formData.email}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -87,7 +88,7 @@ const LoginForm = () => {
         type={!showPassword ? "password" : "text"}
         name="password"
         autoComplete="current-password"
-        aria-required
+        required
         value={formData.password}
         onChange={handleChange}
         onBlur={handleBlur}
