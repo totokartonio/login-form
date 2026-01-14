@@ -5,16 +5,19 @@ import Input from "../Input";
 import { validateField } from "../../utils/validate";
 import { mockReset } from "../../utils/mockReset";
 import SubmitButton from "../SubmitButton";
+import { useNavigate } from "@tanstack/react-router";
 
-type Props = {
-  onReset: () => void;
-};
-
-const ResetPasswordForm = ({ onReset }: Props) => {
+const ResetPasswordForm = () => {
   const [email, setEmail] = useState<string>("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate({ to: "/login" });
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrors((prev) => ({ ...prev, email: undefined }));
@@ -85,7 +88,11 @@ const ResetPasswordForm = ({ onReset }: Props) => {
           text={"Send password reset email"}
         />
       ) : (
-        <button type="button" onClick={onReset} className={styles.backButton}>
+        <button
+          type="button"
+          onClick={handleBack}
+          className={styles.backButton}
+        >
           Back to login
         </button>
       )}

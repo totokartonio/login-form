@@ -16,7 +16,7 @@
   --color-success: oklch(55% 0.11 190);
   --color-success-bg: oklch(95% 0.035 190);
 
-  --outter-padding: 140px;
+  --outer-padding: 140px;
   --content-inline-padding: 100px;
   --content-block-padding: 50px;
 
@@ -69,7 +69,7 @@ button {
   width: 100%;
   max-width: 1440px;
   min-height: 100vh;
-  padding-inline: var(--outter-padding);
+  padding-inline: var(--outer-padding);
   margin-inline: auto;
 }
 
@@ -83,7 +83,7 @@ h1 {
 
 @media (width <= 1000px) {
   :root {
-    --outter-padding: 20px;
+    --outer-padding: 20px;
     --content-inline-padding: 20px;
     --content-block-padding: 35px;
   }
@@ -91,7 +91,7 @@ h1 {
 
 @media (width <= 600px) {
   :root {
-    --outter-padding: 10px;
+    --outer-padding: 10px;
   }
 
   h1 {

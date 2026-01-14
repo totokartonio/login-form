@@ -1,18 +1,25 @@
-import type { User } from "../../types";
 import Card from "../../components/Card";
 import styles from "./ProfilePage.module.css";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "@tanstack/react-router";
 
-type Props = {
-  user: User;
-  onLogout: () => void;
-};
+const ProfilePage = () => {
+  const navigate = useNavigate();
+  const { user, setUser } = useAuth();
+  const handleClick = () => {
+    setUser(null);
+    navigate({ to: "/login" });
+  };
 
-const ProfilePage = ({ user, onLogout }: Props) => {
+  if (!user) {
+    return null;
+  }
+
   return (
     <Card
       variant="left"
       title={
-        <span className={styles.heading}>
+        <h1 className={styles.heading}>
           <span className={styles.greeting}>Welcome, </span>
           <span
             className={styles.email}
@@ -21,13 +28,13 @@ const ProfilePage = ({ user, onLogout }: Props) => {
           >
             {user.email}
           </span>
-        </span>
+        </h1>
       }
     >
       <div className={styles.buttonContainer}>
         <button
           type="button"
-          onClick={onLogout}
+          onClick={handleClick}
           className={styles.logOutButton}
         >
           Logout

@@ -1,14 +1,10 @@
 import ResetPasswordForm from "../../components/ResetPasswordForm";
 import Card from "../../components/Card";
 
-type Props = {
-  onBack: () => void;
-};
-
-const ResetPasswordPage = ({ onBack }: Props) => {
+const ResetPasswordPage = () => {
   return (
-    <Card title="Reset your password" variant="right">
-      <ResetPasswordForm onReset={onBack} />
+    <Card title={<h1>Reset your password</h1>} variant="right">
+      <ResetPasswordForm />
     </Card>
   );
 };
