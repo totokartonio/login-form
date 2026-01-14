@@ -20,7 +20,6 @@ const ResetPasswordForm = () => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setErrors((prev) => ({ ...prev, email: undefined }));
     setEmail(event.target.value);
   };
 
@@ -32,6 +31,7 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isLoading) return;
 
     const emailError = validateField("email", email);
     const newErrors = { ...errors, email: emailError, submit: undefined };
@@ -57,7 +57,7 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       {successMessage && (
         <div role="status" className={styles.formSuccess}>
           {successMessage}
@@ -75,7 +75,7 @@ const ResetPasswordForm = () => {
         name="email"
         placeholder="example@yourmail.com"
         autoComplete="username"
-        aria-required
+        required
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
