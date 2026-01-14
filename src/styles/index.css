@@ -46,14 +46,6 @@ body {
   overflow: auto;
 }
 
-body {
-  font-family:
-    Martian Grotesk,
-    sans-serif;
-  color: var(--color-black);
-  overflow: hidden;
-}
-
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
