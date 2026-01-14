@@ -34,11 +34,16 @@
 html,
 body {
   background-color: var(--color-background);
+  height: 100%;
+  width: 100%;
 }
 
 body {
-  font-family: Martian Grotesk, sans-serif;
+  font-family:
+    Martian Grotesk,
+    sans-serif;
   color: var(--color-black);
+  overflow: hidden;
 }
 
 button:focus-visible,
@@ -55,6 +60,7 @@ button {
   padding: 16px 25px;
   width: fit-content;
   background-color: var(--color-blue);
+  color: var(--color-black);
   font-weight: 600;
 
   &:hover {
