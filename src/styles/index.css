@@ -31,11 +31,10 @@
   font-stretch: 75% 200%; /* Cn: 75%,  Nr: 87.5%,  Std: 100%,  sWd: 112.5%,  Wd: 125%,  xWd: 150%,  uWd: 200% */
 }
 
-html {
+html,
+body {
   height: 100%;
   width: 100%;
-  position: fixed;
-  overflow: hidden;
 }
 
 body {
@@ -44,8 +43,6 @@ body {
     Martian Grotesk,
     sans-serif;
   color: var(--color-black);
-  height: 100%;
-  width: 100%;
   overflow: auto;
 }
 
