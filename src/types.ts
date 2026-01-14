@@ -15,4 +15,9 @@ type User = {
   token: string;
 };
 
-export type { FormData, FormErrors, User };
+type AuthContextType = {
+  user: User | null;
+  setUser: (user: User | null) => void;
+};
+
+export type { FormData, FormErrors, User, AuthContextType };

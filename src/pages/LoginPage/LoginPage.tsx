@@ -1,24 +1,15 @@
 import LoginForm from "../../components/LoginForm";
 import Card from "../../components/Card";
 import styles from "./LoginPage.module.css";
-import type { User } from "../../types";
+import { Link } from "@tanstack/react-router";
 
-type Props = {
-  onSuccess: (user: User) => void;
-  onReset: () => void;
-};
-
-const LoginPage = ({ onSuccess, onReset }: Props) => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    onReset();
-  };
+const LoginPage = () => {
   return (
-    <Card title="Login" variant="right">
-      <LoginForm onSuccess={onSuccess} />
-      <a href="#" className={styles.resetPassword} onClick={handleClick}>
+    <Card title={<h1>Login</h1>} variant="right">
+      <LoginForm />
+      <Link to="/reset-password" className={styles.resetPassword}>
         Forgot your password?
-      </a>
+      </Link>
     </Card>
   );
 };

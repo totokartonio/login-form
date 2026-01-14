@@ -9,7 +9,7 @@ type Props = {
 const Card = ({ children, title, variant }: Props) => {
   return (
     <div className={styles.card}>
-      <h1 className={`${styles.title} ${styles[variant]}`}>{title}</h1>
+      <div className={`${styles.title} ${styles[variant]}`}>{title}</div>
       <div className={`${styles.content} ${styles[variant]}`}>{children}</div>
     </div>
   );

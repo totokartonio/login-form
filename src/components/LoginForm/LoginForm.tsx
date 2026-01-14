@@ -1,17 +1,15 @@
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
-import type { FormErrors, FormData, User } from "../../types";
+import type { FormErrors, FormData } from "../../types";
 import Input from "../Input";
 import { validateField, validateForm } from "../../utils/validate";
 import { mockAuth } from "../../utils/mockAuth";
 import ShowPasswordButton from "./atoms/ShowPasswordButton";
 import SubmitButton from "../SubmitButton";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 
-type Props = {
-  onSuccess: (user: User) => void;
-};
-
-const LoginForm = ({ onSuccess }: Props) => {
+const LoginForm = () => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -19,6 +17,10 @@ const LoginForm = ({ onSuccess }: Props) => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+  const router = useRouter();
+  const { setUser } = useAuth();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -45,7 +47,9 @@ const LoginForm = ({ onSuccess }: Props) => {
 
     try {
       const response = await mockAuth(formData.email, formData.password);
-      onSuccess({ ...response.user, token: response.token });
+      setUser({ ...response.user, token: response.token });
+      await router.invalidate();
+      await navigate({ to: "/profile" });
     } catch (error) {
       setErrors((prev) => ({
         ...prev,
